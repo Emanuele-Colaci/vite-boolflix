@@ -17,13 +17,29 @@ export default {
           //CHIAMATA DELLO STORE
             store
         }
-    }
+    },
+    methods:{
+        searchFilms(){
+            const myUrl = store.apiUrl
+
+            axios.get(myUrl, {
+            params:{
+                query: store.filmList // Passa il valore di ricerca come parametro alla chiamata API
+              }
+            }).then(film => {
+              store.filmArrayList = film.data.results;
+            })
+            .catch(error => {
+              console.error(error);
+            });
+          }
+    },
 }
 </script>
 <template>
   <div>
     <!-- HEADER -->
-    <AppHeader />
+    <AppHeader @search="searchFilms"/>
     <!-- MAIN -->
     <AppMain />
   </div>
