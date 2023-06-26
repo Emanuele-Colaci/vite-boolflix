@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
+}
+
+.container{
+    max-width: 1070px;
+    margin: 3rem auto;
+}
+
+.d-flex{
+    display: flex;
+}
+
+.justify-center{
+    justify-content: center;
+}
+
+.justify-between{
+    justify-content: space-between;
+}
+
+.align-start{
+    align-items: start;
+}
+
+.align-center{
+    align-items: center;
+}
+
+.flex-direction{
+    flex-direction: column;
+}
+
+.margin-bottom{
+    margin-bottom: 10px;
+}
+
+.color-white{
+    color: #fff;
+}
+
