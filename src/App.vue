@@ -19,11 +19,15 @@ export default {
         }
     },
     methods:{
+        tvOrMovie(){
+            
+        },
         searchFilms(){
             const myUrl = store.apiUrl
 
             axios.get(myUrl, {
             params:{
+                api_key: store.apiKey,
                 query: store.filmList // Passa il valore di ricerca come parametro alla chiamata API
               }
             }).then(film => {

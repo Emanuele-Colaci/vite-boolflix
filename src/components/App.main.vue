@@ -17,9 +17,10 @@ export default {
 <template>
     <div class="container">
         <ul>
-           <li v-for="(film, index) in store.filmArrayList" :key="index">
-                <AppFilms :Films="film"/>
-           </li> 
+            <!-- CICLO PER POPOLARE L'ARRAY DI FILM -->
+            <li v-for="film in (store.filmArrayList)" :key="film.id">
+                <AppFilms :Films="film" />
+            </li>
         </ul>
     </div>
 </template>

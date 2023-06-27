@@ -11,9 +11,10 @@ export default {
 }
 </script>
 <template>
+    <!-- CAMPO INPUT E BOTTON PER LA RICERCA DEL FILM -->
     <div class="container">
-        <input type="text" class="me-3" placeholder="Cerca" v-model="store.filmList">
-        <button type="button" class="btn btn-info" @click="$emit('search', this.store.filmList)">Click</button>
+        <input @keyup.enter="$emit('search', store.filmList)" type="text" class="me-3" placeholder="Cerca" v-model="store.filmList">
+        <button type="button" class="btn btn-info" @click="$emit('search', store.filmList)">Click</button>
     </div>
 </template>
 <style lang="scss" scoped>
