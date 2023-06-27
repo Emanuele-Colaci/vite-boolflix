@@ -12,7 +12,7 @@ export default {
 </script>
 <template>
     <header class="z-3 position-fixed w-100">
-        <div class="container d-flex justify-between p-3 ">
+        <div class="my-container d-flex justify-between p-3 ">
             <!-- LOGO DI BOOLFIX -->
             <div class="logo">
                 <img src="/public/logo.png" alt="logo">

@@ -12,10 +12,11 @@
     color: white;
 }
 
-.container{
-    max-width: 1070px;
-    margin: 0 auto;
+body{
+    background-color: $back-col-body;
 }
+
+
 
 .d-flex{
     display: flex;
