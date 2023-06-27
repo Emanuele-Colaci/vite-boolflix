@@ -15,7 +15,7 @@ export default {
 }
 </script>
 <template>
-    <div class="container">
+    <div class="container pt-2 pb-3">
         <ul>
             <!-- CICLO PER POPOLARE L'ARRAY DI FILM -->
             <li v-for="film in (store.filmArrayList)" :key="film.id">
@@ -27,5 +27,6 @@ export default {
 <style lang="scss" scoped>
     ul{
         list-style-type: none;
+        margin-top: 100px;
     }
 </style>
