@@ -24,6 +24,7 @@ export default {
         },
         searchFilms(){
             const myUrl = store.apiUrl
+            const apiUrlTv = store.apiUrlTv
 
             axios.get(myUrl, {
             params:{
@@ -32,10 +33,23 @@ export default {
               }
             }).then(film => {
               store.filmArrayList = film.data.results;
+              console.log('film' + film.data.results)
             })
             .catch(error => {
               console.error(error);
             });
+            axios.get(apiUrlTv, {
+              params:{
+                  api_key: store.apiKey,
+                  query: store.filmList // Passa il valore di ricerca come parametro alla chiamata API
+                }
+              }).then(film => {
+                store.filmArrayList = film.data.results;
+                console.log('serie' + film.data.results)
+              })
+              .catch(error => {
+                console.error(error);
+              });
           }
     },
 }
