@@ -2,11 +2,9 @@
 //IMPORTO STORE
 import { store } from '../store.js';
 import AppFilms from './App.films.vue';
-import AppCast from './App.cast.vue';
 export default {
     components:{
         AppFilms,
-        AppCast
     },
     data(){
         return{

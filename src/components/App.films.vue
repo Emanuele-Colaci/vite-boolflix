@@ -1,10 +1,7 @@
 <script>
+import axios from 'axios';
 import { store } from '../store.js';
-import AppCast from './App.cast.vue';
 export default {
-    components:{
-        AppCast
-    },
     data(){
         return{
             store
@@ -13,10 +10,39 @@ export default {
     props:{
         Films: Object
     },
+    mounted() {
+        this.getmovieId();
+        this.searchCast();
+    },
+    methods: {
+        getmovieId(){
+            store.movieId = this.Films.id
+        },
+        searchCast() {
+              axios.get(`https://api.themoviedb.org/3/movie/${store.movieId}/credits`, {
+                params: {
+                  api_key: store.apiKey,
+                },
+              })
+              .then((response) => {
+              store.castList = response.data.cast;
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        },
+    },
 }
 </script>
 <template>
     <div class="my-container mb-3 w-100">
+        <h6>
+            <strong>Cast: </strong> 
+            <span v-for="(cast, index) in store.castList.slice(0, 5)" :key="index">
+                {{ cast.name }}
+                <span v-if="index < 4">, </span> <!-- Aggiunge la virgola solo per i primi 4 attori -->
+            </span>
+        </h6>
         <div class="card">
               <!-- Titolo, Titolo Originale, Lingua, Voto-->
             <div class="card-body">
@@ -45,9 +71,6 @@ export default {
                             <p>{{Films.overview}}</p>
                         </div>
                     </h4>
-                    <h6 v-for="cast in (store.castList)" :key="cast.id">
-                        <AppCast :cast="cast"/>
-                    </h6>
                 </div>
             </div>
         </div>
@@ -58,6 +81,9 @@ export default {
     .my-container{
         max-width: 1070px;
         margin: 0 auto;
+        h6{
+            display: inline;
+        }
         .card {
             cursor: pointer;
             padding: 1.5rem;

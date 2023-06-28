@@ -7,6 +7,7 @@ export const store = reactive({
     apiKey: '7eaec1b5e6bf5956c5972f2230cfc8c7',
     filmList: '',
     filmArrayList: [],
-    castList: []
+    castList: [],
+    movieId: ''
 })
 

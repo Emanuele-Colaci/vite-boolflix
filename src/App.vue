@@ -47,22 +47,8 @@ export default {
               .catch(error => {
                 console.error(error);
               });
-            },
-            searchCast() {
-              const movieId = store.filmArrayList.id; // Ottieni l'ID del film
-              console.log(movieId)
-              axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits`, {
-                params: {
-                  api_key: store.apiKey,
-                },
-              })
-            .then((response) => {
-              store.castList = response.data.cast;
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-        },
+              console.log(myUrl)
+            }
     },
 }
 </script>
