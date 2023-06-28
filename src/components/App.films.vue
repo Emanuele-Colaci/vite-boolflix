@@ -1,7 +1,11 @@
 <script>
 import axios from 'axios';
 import { store } from '../store.js';
+import LangFlag from 'vue-lang-code-flags';
 export default {
+    components:{
+        LangFlag
+    },
     data(){
         return{
             store
@@ -11,15 +15,15 @@ export default {
         Films: Object
     },
     mounted() {
-        this.getmovieId();
         this.searchCast();
+        this.getmovieId();
     },
     methods: {
         getmovieId(){
             store.movieId = this.Films.id
         },
         searchCast() {
-              axios.get(`https://api.themoviedb.org/3/movie/${store.movieId}/credits`, {
+              axios.get(`https://api.themoviedb.org/3/tv/${store.movieId}/credits`, {
                 params: {
                   api_key: store.apiKey,
                 },
@@ -54,16 +58,19 @@ export default {
                     <!-- RESTITUISCE IL TITOLO ORIGINALE DEL FILM SE PRESENTE, ALTRIMENTI RESTITUISCE IL NOME ORIGINALE DEL FILM  -->
                     <h4><strong>Titlo originale:</strong> {{Films.original_title || Films.original_name}}</h4>
                     <!-- Films.original_language VISUALIZZA LA BANDIRA CORRISPONDENTE ALLA LINGUA, SE LA LINGUA ORIGINALE E' IN INGLESE VIENE APPLICATA UN'ALTRA TIPO DI BANDIERA IN CASO CONTRARIO VIENE MOSTRATA SEMPLICEMENTE SOLO LA LINGUA ORIGINALE -->
-                    <h4>Lingua: 
-                        <span v-if="Films.original_language" :class="'fi fi-' + Films.original_language"></span>
-                        <span v-if="Films.original_language === 'en'" :class="'fi fi-gb' "></span>
-                        <span v-else>{{ Films.original_language }}</span>
+                    <h4>Lingua:
+                        <span v-if="Films.original_language">
+                            <lang-flag :iso="Films.original_language" />
+                        </span>
+                        <span v-else>
+                            {{ Films.original_language }}
+                        </span>
                     </h4>
                     <h4><strong>Voto:</strong>  
-                        <p v-for="(star, index) in Math.ceil(Films.vote_average / 2)" :key="index">
+                        <p v-for="(star, index) in Math.ceil(Films.vote_average / 2)" :key="index"> <!-- ARROTONDA PER ECCESSO -->
                             <i class="fa-solid fa-star"></i>
                         </p>
-                        <p v-for="(star, index) in Math.floor(5 - Films.vote_average / 2)" :key="index">
+                        <p v-for="(star, index) in Math.floor(5 - Films.vote_average / 2)" :key="index"> <!-- ARROTONDA PER DI FETTO, STELLE VUOTE DA VISUALIZZARE PER COMPLETARE IL TOT DI 5  -->
                             <i class="fa-regular fa-star"></i>
                         </p>
                         <div class="overview">
