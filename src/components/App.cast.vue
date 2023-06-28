@@ -11,20 +11,7 @@ export default {
         cast: Object
     },
     methods: {
-        searchFilms() {
-            const movieId = film.id; // Ottieni l'ID del film
-            axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits`, {
-                params: {
-                    api_key: store.apiKey,
-                },
-            })
-            .then((response) => {
-                store.castList = response.data.cast;
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-        },
+        
     }
 }
 </script>
