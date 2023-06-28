@@ -1,5 +1,15 @@
 <script>
+import { store } from '../store.js';
+import AppCast from './App.cast.vue';
 export default {
+    components:{
+        AppCast
+    },
+    data(){
+        return{
+            store
+        }
+    },
     props:{
         Films: Object
     },
@@ -21,7 +31,7 @@ export default {
                     <h4>Lingua: 
                         <span v-if="Films.original_language" :class="'fi fi-' + Films.original_language"></span>
                         <span v-if="Films.original_language === 'en'" :class="'fi fi-gb' "></span>
-                        <span>{{ Films.original_language }}</span>
+                        <span v-else>{{ Films.original_language }}</span>
                     </h4>
                     <h4><strong>Voto:</strong>  
                         <p v-for="(star, index) in Math.ceil(Films.vote_average / 2)" :key="index">
@@ -34,7 +44,10 @@ export default {
                             <h6>Overview:</h6>
                             <p>{{Films.overview}}</p>
                         </div>
-                     </h4>
+                    </h4>
+                    <h6 v-for="cast in (store.castList)" :key="cast.id">
+                        <AppCast :cast="cast"/>
+                    </h6>
                 </div>
             </div>
         </div>
@@ -64,8 +77,7 @@ export default {
             opacity: 1; 
         }
         .card:hover .info {
-            opacity: 1;
-            transform: translateY(0px); 
+            opacity: 1; 
         }
         .card:before {
             content: "";

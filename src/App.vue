@@ -19,9 +19,6 @@ export default {
         }
     },
     methods:{
-        tvOrMovie(){
-            
-        },
         searchFilms(){
             const myUrl = store.apiUrl
             const apiUrlTv = store.apiUrlTv
@@ -33,7 +30,7 @@ export default {
               }
             }).then(film => {
               store.filmArrayList = film.data.results;
-              console.log('film' + film.data.results)
+              console.log('Film' + film.data.results)
             })
             .catch(error => {
               console.error(error);
